@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "producto_id" }) })
 public class ComercioProducto {
 
+    // PK autogenerada autoincremental
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
