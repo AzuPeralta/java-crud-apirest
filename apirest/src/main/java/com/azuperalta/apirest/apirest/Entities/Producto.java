@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Producto {
@@ -21,7 +21,7 @@ public class Producto {
     // Utilización de Set para asegurar que no haya duplicados y porque no importa
     // el orden.
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
+    @JsonManagedReference
     private Set<ComercioProducto> comercioProductos = new HashSet<>();
 
     // Getters y setters
@@ -57,11 +57,24 @@ public class Producto {
     public void setComercioProductos(Set<ComercioProducto> comercioProductos) {
         this.comercioProductos = comercioProductos;
     }
+
     public String getNombreComercio() {
         return nombreComercio;
     }
 
     public void setNombreComercio(String nombreComercio) {
         this.nombreComercio = nombreComercio;
+    }
+
+    // se ejecuta automáticamente después de que la entidad Producto es cargada
+    // desde la base de datos
+    @PostLoad
+    private void initializeNombreComercio() {
+        if (comercioProductos != null && !comercioProductos.isEmpty()) {
+            ComercioProducto primerProducto = comercioProductos.iterator().next();
+            if (primerProducto != null && primerProducto.getComercio() != null) {
+                this.nombreComercio = primerProducto.getComercio().getNombreComercio();
+            }
+        }
     }
 }
