@@ -5,7 +5,7 @@ import java.util.HashSet;
 import jakarta.persistence.*;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Comercio {
@@ -19,7 +19,7 @@ public class Comercio {
     // Utilización de Set para asegurar que no haya duplicados y porque no importa
     // el orden.
     @OneToMany(mappedBy = "comercio", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
+    @JsonManagedReference
     private Set<ComercioProducto> comercioProductos = new HashSet<>();
 
     // Getters y setters
