@@ -40,7 +40,7 @@ public class ComercioProductoController {
         Comercio comercio = relacion.getComercio();
 
         comercioProductoService.eliminarRelacion(id);
-        return "No es posible borrar relación con el ID: " + id + " ya que antes debes borrar el producto "
+        return "¡No es posible borrar relación con el ID: " + id + "! Antes debes borrar el producto "
                 + producto.getNombre() + " que está asociado al comercio " + comercio.getNombreComercio() + ".";
     }
 
