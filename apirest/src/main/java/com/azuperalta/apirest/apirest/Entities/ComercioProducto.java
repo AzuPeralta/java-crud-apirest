@@ -13,14 +13,17 @@ public class ComercioProducto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //@ManyToOne(cascade = CascadeType.ALL)
+    //FetchType.LAZY se utiliza para diferir la carga de entidades relacionadas hasta que realmente se necesiten
     @ManyToOne
     @JoinColumn(name = "comercio_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("comercio-producto")
     private Comercio comercio;
 
+    //@ManyToOne(cascade = CascadeType.REMOVE)
     @ManyToOne
     @JoinColumn(name = "producto_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("producto-comercio")
     private Producto producto;
 
     // Getters and setters
