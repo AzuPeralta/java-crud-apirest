@@ -32,7 +32,7 @@ public class ComercioProductoController {
     @DeleteMapping("/{id}")
     public String deleteRelacion(@PathVariable Long id) {
         comercioProductoService.eliminarRelacion(id);
-        return "La relación con el ID: " + id + " fue eliminada correctamente";
+        return "No es posible borrar relación con el ID: " + id + " ya que antes debes borrar el produto que está asociado al comercio.";
     }
 
     @PostMapping("/{comercioId}/productos/{productoId}")
