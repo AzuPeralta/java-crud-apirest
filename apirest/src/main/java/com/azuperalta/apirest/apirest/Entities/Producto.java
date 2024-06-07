@@ -21,7 +21,7 @@ public class Producto {
     // Utilización de Set para asegurar que no haya duplicados y porque no importa
     // el orden.
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference("producto-comercio")
     private Set<ComercioProducto> comercioProductos = new HashSet<>();
 
     // Getters y setters
