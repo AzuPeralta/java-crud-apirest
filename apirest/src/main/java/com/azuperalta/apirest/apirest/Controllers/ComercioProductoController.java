@@ -24,13 +24,7 @@ public class ComercioProductoController {
     public ComercioProducto getRelacionPorId(@PathVariable Long id) {
         return comercioProductoService.obtenerRelacionPorId(id);
     }
-
-    @PostMapping
-    public ComercioProducto createRelacion(@RequestBody ComercioProducto relacion) {
-        return comercioProductoService.crearRelacion(relacion);
-    }
-
-    @PutMapping("/{id}")
+   @PutMapping("/{id}")
     public ComercioProducto updateRelacion(@PathVariable Long id, @RequestBody ComercioProducto detallesNuevaRelacion) {
         return comercioProductoService.actualizarRelacion(id, detallesNuevaRelacion);
     }
